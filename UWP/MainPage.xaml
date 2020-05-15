@@ -1,0 +1,75 @@
+﻿<Page
+    x:Class="UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+       
+            
+            <!--
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Grid.Row="0">
+                <TextBlock Text="Sélectionnez une catégorie :" FontSize="20"/>
+                <RadioButton Checked="rbButton_Checked" GroupName="GroupeDoc" Name="rbButton" Content="Tous" Width="100"></RadioButton>
+                <RadioButton Checked="rbButton_Checked" GroupName="GroupeDoc" Name="rbFilm" Content="Film" Width="100"></RadioButton>
+                <RadioButton Checked="rbButton_Checked" GroupName="GroupeDoc" Name="rbLivre" Content="Livre" Width="100"></RadioButton>
+            </StackPanel>
+            -->
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Choisissez un type de document : " 
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="20" FontFamily="Comic Sans MS" FontWeight="Bold" Foreground="Magenta"></TextBlock>
+            <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="cboGenre" SelectionChanged="cboGenre_SelectionChanged_1" Width="400"
+                               Background="#000" FontFamily="Century Gothic" FontSize="20">
+                <TextBlock Text="Tous" Foreground="#FFF"></TextBlock>
+                <TextBlock Text="Film" Foreground="#FFF"></TextBlock>
+                <TextBlock Text="Livre" Foreground="#FFF"></TextBlock>
+            </ComboBox>
+
+
+        
+        
+            <ListView x:Name="lvDocuments" Grid.Row="1" Grid.Column="0" SelectionChanged="lvDocuments_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Photo}" Width="50" Height="50"></Image>
+                            <TextBlock Text="{Binding Titre}" Width="300"></TextBlock>
+                            <TextBlock Text="{Binding Etat}" Width="200"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <GridView x:Name="gvActeurs" SelectionMode="Multiple" Grid.Row="1" Grid.Column="1">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Image Source="{Binding PhotoActeur}" Width="90" Height="90"
+                                   Stretch="Fill" />
+                        <Border VerticalAlignment="Bottom"
+                                    Height="15" Background="Black" Opacity="0.8">
+                            <TextBlock Text="{Binding NomActeur}"
+                                               HorizontalAlignment="Center"
+                                           RequestedTheme="Dark" VerticalAlignment="Center" 
+                                           FontSize="15" />
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+    </Grid>
+   
+</Page>
